@@ -1,0 +1,14 @@
+[Unit]
+Description=Nitrokey touch notification proxy for SSH agent
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=exec
+# The real SSH_AUTH_SOCK is set by the agent; pass it explicitly
+ExecStart=%h/git/nitrokey-touch-notify/nitrokey_touch_notify.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target
